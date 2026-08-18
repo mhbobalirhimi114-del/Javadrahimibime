@@ -328,6 +328,81 @@
 <footer>
     بیمه جواد رحیمی - بیمه ایران فسا
 </footer>
+<script>
+const GOOGLE_SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbxwwRZRW2dK02H8zvJdBslos6O-7FddOm382NFH55-1C3v4WjDvmvwtU8XoKpdzRy8/exec";
 
+const form = document.querySelector('form[name="insurance-request"]');
+
+form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const button = form.querySelector('button[type="submit"]');
+    const files = document.getElementById("documents").files;
+
+    if (!files.length) {
+        alert("لطفاً حداقل یک فایل انتخاب کنید.");
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = "⏳ در حال ارسال...";
+
+    try {
+        const uploadedFiles = [];
+
+        for (const file of files) {
+
+            const base64 = await new Promise((resolve, reject) => {
+
+                const reader = new FileReader();
+
+                reader.onload = () => {
+                    resolve(reader.result.split(",")[1]);
+                };
+
+                reader.onerror = reject;
+
+                reader.readAsDataURL(file);
+            });
+
+            uploadedFiles.push({
+                name: file.name,
+                type: file.type,
+                data: base64
+            });
+        }
+
+        const data = {
+            name: document.getElementById("name").value,
+            phone: document.getElementById("phone").value,
+            insuranceType: document.getElementById("insuranceType").value,
+            description: document.getElementById("description").value,
+            files: uploadedFiles
+        };
+
+        await fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify(data)
+        });
+
+        form.style.display = "none";
+        document.getElementById("success").style.display = "block";
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("❌ ارسال انجام نشد. دوباره امتحان کنید.");
+
+        button.disabled = false;
+        button.textContent = "📤 ارسال درخواست";
+    }
+});
+</script>
 </body>
 </html>
