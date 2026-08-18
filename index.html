@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بیمه جواد رحیمی | بیمه ایران فسا</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Tahoma, Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: #0757a0;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+            font-size: 27px;
+        }
+
+        header p {
+            margin: 6px 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 22px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.08);
+        }
+
+        h2 {
+            color: #0757a0;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 15px;
+        }
+
+        textarea {
+            min-height: 100px;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            background: #fafafa;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 18px;
+            border: none;
+            border-radius: 12px;
+            background: #0757a0;
+            color: white;
+            font-size: 17px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .green {
+            background: #159447;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .service {
+            background: white;
+            padding: 18px 8px;
+            text-align: center;
+            border-radius: 14px;
+            box-shadow: 0 3px 10px rgba(0,0,0,.06);
+        }
+
+        .success {
+            display: none;
+            background: #e8f7ed;
+            color: #176b31;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 10px;
+            color: #666;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>بیمه جواد رحیمی</h1>
+    <p>بیمه ایران</p>
+    <p>فسا، خیابان سینما، جنب مسجد صاحب‌الزمان</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>به دفتر بیمه جواد رحیمی خوش آمدید</h2>
+
+        <p style="text-align:center;">
+            درخواست بیمه خود را آنلاین ثبت کنید.
+            پس از بررسی مدارک، مبلغ بیمه به شما اعلام خواهد شد.
+        </p>
+
+        <button class="btn green"
+            onclick="document.getElementById('request').scrollIntoView({behavior:'smooth'})">
+            📝 درخواست بیمه
+        </button>
+
+        <a href="tel:09301200121"
+           class="btn"
+           style="display:block;text-align:center;text-decoration:none;">
+            📞 تماس با دفتر
+        </a>
+    </div>
+
+    <div class="card">
+
+        <h2>📋 خدمات بیمه</h2>
+
+        <div class="services">
+
+            <div class="service">🚗<br>بیمه شخص ثالث</div>
+            <div class="service">🚘<br>بیمه بدنه</div>
+            <div class="service">👤<br>بیمه عمر</div>
+            <div class="service">🏥<br>بیمه درمان</div>
+            <div class="service">🏠<br>بیمه آتش‌سوزی</div>
+            <div class="service">🏢<br>بیمه مسئولیت</div>
+
+        </div>
+
+    </div>
+
+    <div class="card" id="request">
+
+        <h2>📝 درخواست بیمه</h2>
+
+        <form
+            name="insurance-request"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            enctype="multipart/form-data">
+
+            <!-- مورد ضد اسپم -->
+            <p style="display:none;">
+                <label>
+                    اگر ربات هستید این قسمت را پر کنید:
+                    <input name="bot-field">
+                </label>
+            </p>
+
+            <!-- نام فرم برای Netlify -->
+            <input type="hidden"
+                   name="form-name"
+                   value="insurance-request">
+
+            <label for="insuranceType">
+                نوع بیمه
+            </label>
+
+            <select id="insuranceType"
+                    name="insurance-type"
+                    required>
+
+                <option value="">
+                    انتخاب نوع بیمه
+                </option>
+
+                <option value="شخص ثالث">
+                    بیمه شخص ثالث
+                </option>
+
+                <option value="بدنه">
+                    بیمه بدنه
+                </option>
+
+                <option value="عمر">
+                    بیمه عمر
+                </option>
+
+                <option value="درمان">
+                    بیمه درمان
+                </option>
+
+                <option value="آتش سوزی">
+                    بیمه آتش‌سوزی
+                </option>
+
+                <option value="مسئولیت">
+                    بیمه مسئولیت
+                </option>
+
+                <option value="حوادث">
+                    بیمه حوادث
+                </option>
+
+            </select>
+
+            <label for="name">
+                نام و نام خانوادگی
+            </label>
+
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="مثلاً علی رضایی"
+                required>
+
+            <label for="phone">
+                شماره تلفن
+            </label>
+
+            <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="مثلاً 09123456789"
+                required>
+
+            <label for="description">
+                توضیحات
+            </label>
+
+            <textarea
+                id="description"
+                name="description"
+                placeholder="توضیحات مربوط به درخواست..."></textarea>
+
+            <label for="documents">
+                📎 مدارک
+            </label>
+
+            <input
+                type="file"
+                id="documents"
+                name="documents"
+                accept="image/*,.pdf"
+                required>
+
+            <small>
+                فعلاً یک فایل انتخاب کنید.
+            </small>
+
+            <button
+                type="submit"
+                class="btn green">
+                📤 ارسال درخواست
+            </button>
+
+        </form>
+
+        <div class="success" id="success">
+            ✅ درخواست شما با موفقیت ارسال شد.
+            <br><br>
+            پس از بررسی مدارک، مبلغ بیمه اعلام خواهد شد.
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>📞 تماس با دفتر</h2>
+
+        <p style="text-align:center;">
+            بیمه جواد رحیمی<br><br>
+            📍 فسا، خیابان سینما،
+            جنب مسجد صاحب‌الزمان<br><br>
+            📱 ۰۹۳۰۱۲۰۰۱۲۱
+        </p>
+
+        <a href="tel:09301200121"
+           class="btn"
+           style="display:block;text-align:center;text-decoration:none;">
+            تماس با دفتر
+        </a>
+
+    </div>
+
+</div>
+
+<footer>
+    بیمه جواد رحیمی - بیمه ایران فسا
+</footer>
+
+</body>
+</html>
